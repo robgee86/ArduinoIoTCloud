@@ -147,7 +147,7 @@ static OTACloudProcessInterface::State convertUnor4ErrorToState(int error_code) 
   case -10:
     return OTACloudProcessInterface::OtaHeaderCrcFail;
   case -11:
-    return OTACloudProcessInterface::OtaHeaterMagicNumberFail;
+    return OTACloudProcessInterface::OtaHeaderMagicNumberFail;
   case -12:
     return OTACloudProcessInterface::OtaDownloadFail;
   case -13:
