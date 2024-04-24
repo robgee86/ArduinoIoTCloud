@@ -59,7 +59,7 @@ public:
     OtaStorageOpenFail        = static_cast<State>(ota::OTAError::OtaStorageOpen),
     OtaHeaderLengthFail       = static_cast<State>(ota::OTAError::OtaHeaderLength),
     OtaHeaderCrcFail          = static_cast<State>(ota::OTAError::OtaHeaderCrc),
-    OtaHeaterMagicNumberFail  = static_cast<State>(ota::OTAError::OtaHeaterMagicNumber),
+    OtaHeaderMagicNumberFail  = static_cast<State>(ota::OTAError::OtaHeaterMagicNumber),
     ParseHttpHeaderFail       = static_cast<State>(ota::OTAError::ParseHttpHeader),
     UrlParseErrorFail         = static_cast<State>(ota::OTAError::UrlParseError),
     ServerConnectErrorFail    = static_cast<State>(ota::OTAError::ServerConnectError),

@@ -41,7 +41,7 @@ const char* const OTACloudProcessInterface::STATE_NAMES[] = { // used only for d
   "OtaStorageOpenFail",
   "OtaHeaderLengthFail",
   "OtaHeaderCrcFail",
-  "OtaHeaterMagicNumberFail",
+  "OtaHeaderMagicNumberFail",
   "ParseHttpHeaderFail",
   "UrlParseErrorFail",
   "ServerConnectErrorFail",
@@ -129,7 +129,6 @@ OTACloudProcessInterface::State OTACloudProcessInterface::otaBegin() {
 }
 
 void OTACloudProcessInterface::calculateSHA256(SHA256& sha256_calc) {
-  DEBUG_VERBOSE("calculate sha on: 0x%X len 0x%X  %d", appStartAddress(), appSize(), appSize());
   auto res = appFlashOpen();
   if(!res) {
     // TODO return error

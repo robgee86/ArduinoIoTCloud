@@ -125,7 +125,7 @@ OTACloudProcessInterface::State OTADefaultCloudProcessInterface::fetch() {
     res = OtaDownloadFail;
   } else if(context->downloadState == OtaDownloadMagicNumberMismatch) {
     DEBUG_VERBOSE("OTA ERROR: Magic number mismatch");
-    res = OtaHeaterMagicNumberFail;
+    res = OtaHeaderMagicNumberFail;
   }
 
 exit:
@@ -144,7 +144,7 @@ void OTADefaultCloudProcessInterface::parseOta(uint8_t* buffer, size_t buf_len) 
     switch(context->downloadState) {
     case OtaDownloadHeader: {
       uint32_t copied = buf_len < sizeof(context->header.buf) ? buf_len : sizeof(context->header.buf);
-      memcpy(context->header.buf, buffer, copied);
+      memcpy(context->header.buf+context->headerCopiedBytes, buffer, copied);
       cursor += copied;
       context->headerCopiedBytes += copied;
 
