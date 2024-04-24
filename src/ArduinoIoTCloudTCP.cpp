@@ -66,7 +66,6 @@ ArduinoIoTCloudTCP::ArduinoIoTCloudTCP()
 , _dataTopicIn("")
 #if OTA_ENABLED
 , _ota(&_message_stream)
-, _ask_user_before_executing_ota{false}
 , _get_ota_confirmation{nullptr}
 #endif /* OTA_ENABLED */
 {
@@ -320,6 +319,12 @@ ArduinoIoTCloudTCP::State ArduinoIoTCloudTCP::handle_Connected()
   _device.update();
 
 #if  OTA_ENABLED
+  if(_get_ota_confirmation != nullptr &&
+      _ota.getState() == OTACloudProcessInterface::State::OtaAvailable &&
+      _get_ota_confirmation()) {
+    _ota.approveOta();
+  }
+
   _ota.update();
 #endif // OTA_ENABLED
 

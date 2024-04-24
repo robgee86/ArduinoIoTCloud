@@ -94,7 +94,12 @@ class ArduinoIoTCloudTCP: public ArduinoIoTCloudClass
      */
     void onOTARequestCb(onOTARequestCallbackFunc cb) {
       _get_ota_confirmation = cb;
-      _ask_user_before_executing_ota = true;
+
+      if(_get_ota_confirmation) {
+        _ota.setOtaPolicies(OTACloudProcessInterface::ApprovalRequired);
+      } else {
+        _ota.setOtaPolicies(OTACloudProcessInterface::None);
+      }
     }
 #endif
 
@@ -145,7 +150,6 @@ class ArduinoIoTCloudTCP: public ArduinoIoTCloudClass
 #if OTA_ENABLED
     TLSClientOta _otaClient;
     OTACloudProcess _ota;
-    bool _ask_user_before_executing_ota;
     onOTARequestCallbackFunc _get_ota_confirmation;
 #endif /* OTA_ENABLED */
 
